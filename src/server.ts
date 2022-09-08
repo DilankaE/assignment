@@ -1,15 +1,16 @@
 import { app } from "./app";
 import * as dotenv from "dotenv";
-import {  DBConnect } from "./db/db";
-
+import   {DBService}  from "./db/dbService";
+import { MongoDBService } from "./db/mongoDBService";
+import { table } from "console";
+import { TableTypes } from "./db/tableNames";
 
 
 dotenv.config();
 const port = process.env.PORT || 3000;
-var DB = new DBConnect;
-DB.connectToDatabase()
+const db:DBService = new MongoDBService();
+db.connectToDatabase()
   .then(() => {
-
         app.listen(port, () => {
             console.log(`Server started at http://localhost:${port}`);
         });

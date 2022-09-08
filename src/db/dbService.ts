@@ -1,17 +1,10 @@
-import express, { Request, Response } from "express";
-//import { ObjectId } from "mongodb";
-import { collections, } from "./db";
-import {instructor} from "../models/models";
+import { instructor } from "../models/models";
+import { TableTypes } from "./tableNames";
 
+export interface DBService {
+    connectToDatabase(): Promise<any>;
+    postOne(req: any) : Promise<any> ;
+    getItem(value: any): Promise<any>;
+    
 
-export class DBService{
-public async postOne(req: instructor, dbCollection:string):Promise<any>{
-    console.log(req) 
-    const result = await collections.users?.insertOne(req);
-    return(result)
-   
-  }
 }
-
-
-
